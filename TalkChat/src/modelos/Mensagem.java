@@ -43,7 +43,7 @@ public class Mensagem implements Serializable {
 
     @Override
     public String toString() {
-        return "Mensagem{" + "conteudoMensagem=" + conteudoMensagem + ", destinatario=" + destinatario + ", ipRemetente=" + ipRemetente + '}';
+        return String.format("%s: %s\n", getIpRemetente(), getConteudoMensagem());
     }
     
     

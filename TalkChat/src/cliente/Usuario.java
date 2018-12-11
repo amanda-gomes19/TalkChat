@@ -56,32 +56,24 @@ public class Usuario {
             Registry registry = LocateRegistry.getRegistry("172.16.0.89", Constant.RMI_PORT);
             this.remote = (InterfaceServidor) registry.lookup(Constant.RMI_ID);
             Scanner scanner = new Scanner(System.in);
-
-            //String login = JOptionPane.showInputDialog("Digite o login ");
             localhost = InetAddress.getLocalHost();
-            //System.out.print(localhost.getHostAddress());
             usuariosOnline = remote.autentica(login, localhost.getHostAddress());
-            
-            //System.out.println("Usuarios online: " + usuariosOnline.toString());
             atualizaListaUsuariosOnlineLocal(remote);
 
-            //remote.enviarMensagem(mensagem);//manda pro servidor
-            //enviaMensagemLocal(remote);
         } catch (Exception e) {
             System.out.println("Erro: " + e);
         }
 
     }
 
-    public void enviaMensagemLocal(InterfaceServidor remote) throws RemoteException {
+    public void enviaMensagemLocal(Mensagem mensagemInterface) throws RemoteException {
 
         while (true) {
             mensagem = new Mensagem();
-            mensagem.setDestinatario(JOptionPane.showInputDialog("Nome do destinatário:"));
-            conteudoMensagem = JOptionPane.showInputDialog("Mensagem");//recebe o digitado
-            mensagem.setConteudoMensagem(conteudoMensagem);
+            mensagem.setDestinatario(mensagemInterface.getDestinatario());
+            mensagem.setConteudoMensagem(mensagemInterface.getConteudoMensagem());
             mensagem.setIpRemetente(localhost.getHostAddress());
-            remote.enviarMensagem(mensagem);
+            this.remote.enviarMensagem(mensagem);
             atualizaListaUsuariosOnlineLocal(remote);
         }
 

@@ -24,28 +24,8 @@ public class Servidor implements InterfaceServidor {
     private TabelaUsuario tabelaUsuario = new TabelaUsuario();
     private String msgRecebida = "Sem mensagem";
     private static Servidor uniqueInstance;
+    private String todasMensagens;
 
-//    public static void main(String[] args) throws RemoteException {
-//        
-//        
-//
-//        try {
-//
-//            Servidor servidor = new Servidor();
-//
-//            InterfaceServidor usuarioInterface = (InterfaceServidor) UnicastRemoteObject.exportObject(servidor, 0);
-//
-//            Registry registry = LocateRegistry.createRegistry(Constant.RMI_PORT);
-//
-//            registry.bind(Constant.RMI_ID, usuarioInterface);
-//
-//            System.out.println("Servidor pronto!");
-//
-//        } catch (Exception e) {
-//            System.out.println("Erro: " + e.toString());
-//            e.printStackTrace();
-//        }
-//    }
 
     public Servidor() {
         
@@ -58,6 +38,16 @@ public class Servidor implements InterfaceServidor {
         return uniqueInstance;
 
     }
+
+    public String getTodasMensagens() {
+        return todasMensagens;
+    }
+
+    public void setTodasMensagens(String todasMensagens) {
+        this.todasMensagens = todasMensagens;
+    }
+
+     
     
     public void iniciaServidor() throws RemoteException{
          try {
@@ -84,7 +74,7 @@ public class Servidor implements InterfaceServidor {
 
             Registry registry = LocateRegistry.getRegistry(buscaDestinatario(mensagem.getDestinatario()), Constant1.RMI_PORT);
             InterfaceUsuario remote = (InterfaceUsuario) registry.lookup(Constant1.RMI_ID);
-            System.out.println(mensagem.toString());
+            setTodasMensagens(mensagem.toString());
             String ipDestinatario = tabelaUsuario.getUsuario(mensagem.getDestinatario());
             msgRecebida = mensagem.getConteudoMensagem();
 

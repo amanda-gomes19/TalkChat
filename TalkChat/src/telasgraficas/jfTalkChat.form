@@ -60,7 +60,7 @@
                           <Component id="jScrollPane1" min="-2" pref="133" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextField1" min="-2" pref="501" max="-2" attributes="0"/>
+                              <Component id="jtCaixaDeTexto" min="-2" pref="501" max="-2" attributes="0"/>
                               <Component id="jScrollPane2" min="-2" pref="501" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -100,7 +100,7 @@
                       <Group type="102" attributes="0">
                           <Component id="jScrollPane2" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField1" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="jtCaixaDeTexto" min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -162,7 +162,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextPane" name="jTextPane1">
+            <Component class="javax.swing.JTextPane" name="jtpMostraMensagens">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
@@ -173,8 +173,14 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Enviar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbEnviarActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="jtCaixaDeTexto">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtCaixaDeTextoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbVoltaTelaInicial">
           <Properties>

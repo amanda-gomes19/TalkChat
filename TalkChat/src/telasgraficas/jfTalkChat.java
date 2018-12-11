@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import modelos.Mensagem;
 
 import servidor.Servidor;
 
@@ -20,6 +21,7 @@ public class jfTalkChat extends javax.swing.JFrame {
     Usuario usuario = Usuario.getInstance();
     Servidor servidor = Servidor.getInstance();
     ArrayList<String> arrayUsuariosOnline = new ArrayList<>();
+    String destinatario = null;
 
     /**
      * Creates new form jfTalkChat
@@ -45,9 +47,9 @@ public class jfTalkChat extends javax.swing.JFrame {
         jListaUsuariosOnline = new javax.swing.JList<>();
         jbAtualizaListaDeUsuariosOn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        jtpMostraMensagens = new javax.swing.JTextPane();
         jbEnviar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jtCaixaDeTexto = new javax.swing.JTextField();
         jbVoltaTelaInicial = new javax.swing.JButton();
         jlNomeDestinatario = new javax.swing.JLabel();
 
@@ -67,10 +69,21 @@ public class jfTalkChat extends javax.swing.JFrame {
             }
         });
 
-        jTextPane1.setEditable(false);
-        jScrollPane2.setViewportView(jTextPane1);
+        jtpMostraMensagens.setEditable(false);
+        jScrollPane2.setViewportView(jtpMostraMensagens);
 
         jbEnviar.setText("Enviar");
+        jbEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEnviarActionPerformed(evt);
+            }
+        });
+
+        jtCaixaDeTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtCaixaDeTextoActionPerformed(evt);
+            }
+        });
 
         jbVoltaTelaInicial.setText("Sair");
         jbVoltaTelaInicial.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +112,7 @@ public class jfTalkChat extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addGroup(jpTalkChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtCaixaDeTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jpTalkChatLayout.createSequentialGroup()
                         .addGroup(jpTalkChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,7 +142,7 @@ public class jfTalkChat extends javax.swing.JFrame {
                     .addGroup(jpTalkChatLayout.createSequentialGroup()
                         .addComponent(jScrollPane2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jtCaixaDeTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpTalkChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbAtualizaListaDeUsuariosOn)
@@ -157,6 +170,11 @@ public class jfTalkChat extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void pegaValorDoList() {
+        this.destinatario = jListaUsuariosOnline.getSelectedValuesList().toString();
+
+    }
+
     private void jbAtualizaListaDeUsuariosOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizaListaDeUsuariosOnActionPerformed
 
         try {
@@ -176,6 +194,26 @@ public class jfTalkChat extends javax.swing.JFrame {
         jfTelaInicial jfTelaInicial = new jfTelaInicial();
         jfTelaInicial.setVisible(true);
     }//GEN-LAST:event_jbVoltaTelaInicialActionPerformed
+
+    private void jtCaixaDeTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCaixaDeTextoActionPerformed
+        
+    }//GEN-LAST:event_jtCaixaDeTextoActionPerformed
+
+    private void jbEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEnviarActionPerformed
+        pegaValorDoList();
+        while (true) {
+            try {
+                Mensagem mensagemInterface = new Mensagem();
+                mensagemInterface.setDestinatario(destinatario);
+                mensagemInterface.setConteudoMensagem(getCaixaDeTexto());
+                usuario.enviaMensagemLocal(mensagemInterface);
+                jtpMostraMensagens.add(servidor.getTodasMensagens(), this);
+            } catch (RemoteException ex) {
+                Logger.getLogger(jfTalkChat.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }//GEN-LAST:event_jbEnviarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,13 +256,19 @@ public class jfTalkChat extends javax.swing.JFrame {
     private javax.swing.JList<String> jListaUsuariosOnline;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JButton jbAtualizaListaDeUsuariosOn;
     private javax.swing.JButton jbEnviar;
     private javax.swing.JButton jbVoltaTelaInicial;
     private javax.swing.JLabel jlNomeDestinatario;
     private javax.swing.JLabel jlTalkChat;
     private javax.swing.JPanel jpTalkChat;
+    private javax.swing.JTextField jtCaixaDeTexto;
+    private javax.swing.JTextPane jtpMostraMensagens;
     // End of variables declaration//GEN-END:variables
+
+    public String getCaixaDeTexto() {
+        String caixaDeTexto = jtCaixaDeTexto.getText();
+        return caixaDeTexto;
+    }
+
 }
