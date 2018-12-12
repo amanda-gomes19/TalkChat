@@ -16,7 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import Interface.InterfaceServidor;
 import Interface.InterfaceUsuario;
-import cliente.Usuario;
 import java.util.ArrayList;
 
 public class Servidor implements InterfaceServidor {

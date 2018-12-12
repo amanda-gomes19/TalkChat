@@ -53,7 +53,7 @@ public class Usuario {
         try {
 
             //IP do Servidor
-            Registry registry = LocateRegistry.getRegistry("172.16.0.89", Constant.RMI_PORT);
+            Registry registry = LocateRegistry.getRegistry("172.16.0.30", Constant.RMI_PORT);
             this.remote = (InterfaceServidor) registry.lookup(Constant.RMI_ID);
             Scanner scanner = new Scanner(System.in);
             localhost = InetAddress.getLocalHost();
@@ -88,6 +88,7 @@ public class Usuario {
                     // metodo para atualizacao
                     usuariosOnline.clear();
                     usuariosOnline = remote.atualizaListaUsuariosOnline();
+                    
                     System.out.println("Usuários online: " + usuariosOnline.toString());
                 } catch (RemoteException ex) {
                     Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);

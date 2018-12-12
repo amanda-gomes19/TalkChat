@@ -45,13 +45,13 @@ public class jfTalkChat extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListaUsuariosOnline = new javax.swing.JList<>();
-        jbAtualizaListaDeUsuariosOn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtpMostraMensagens = new javax.swing.JTextPane();
         jbEnviar = new javax.swing.JButton();
         jtCaixaDeTexto = new javax.swing.JTextField();
         jbVoltaTelaInicial = new javax.swing.JButton();
         jlNomeDestinatario = new javax.swing.JLabel();
+        jbAtualiza = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,13 +61,6 @@ public class jfTalkChat extends javax.swing.JFrame {
         jLabel1.setText("Usuários Online");
 
         jScrollPane1.setViewportView(jListaUsuariosOnline);
-
-        jbAtualizaListaDeUsuariosOn.setText("Atualizar");
-        jbAtualizaListaDeUsuariosOn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAtualizaListaDeUsuariosOnActionPerformed(evt);
-            }
-        });
 
         jtpMostraMensagens.setEditable(false);
         jScrollPane2.setViewportView(jtpMostraMensagens);
@@ -94,27 +87,27 @@ public class jfTalkChat extends javax.swing.JFrame {
 
         jlNomeDestinatario.setText("Conversas");
 
+        jbAtualiza.setText("Atualiza");
+        jbAtualiza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAtualizaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpTalkChatLayout = new javax.swing.GroupLayout(jpTalkChat);
         jpTalkChat.setLayout(jpTalkChatLayout);
         jpTalkChatLayout.setHorizontalGroup(
             jpTalkChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpTalkChatLayout.createSequentialGroup()
-                .addGroup(jpTalkChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTalkChatLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jbAtualizaListaDeUsuariosOn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbEnviar)
-                        .addGap(1, 1, 1)
-                        .addComponent(jbVoltaTelaInicial))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTalkChatLayout.createSequentialGroup()
-                        .addContainerGap()
+                .addGroup(jpTalkChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jpTalkChatLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addGroup(jpTalkChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtCaixaDeTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jpTalkChatLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpTalkChatLayout.createSequentialGroup()
                         .addGroup(jpTalkChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpTalkChatLayout.createSequentialGroup()
                                 .addGap(246, 246, 246)
@@ -124,7 +117,14 @@ public class jfTalkChat extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addGap(28, 28, 28)
                                 .addComponent(jlNomeDestinatario)))
-                        .addGap(0, 248, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jpTalkChatLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jbAtualiza)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbEnviar)
+                        .addGap(1, 1, 1)
+                        .addComponent(jbVoltaTelaInicial)))
                 .addGap(0, 21, Short.MAX_VALUE))
         );
         jpTalkChatLayout.setVerticalGroup(
@@ -145,9 +145,9 @@ public class jfTalkChat extends javax.swing.JFrame {
                         .addComponent(jtCaixaDeTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpTalkChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbAtualizaListaDeUsuariosOn)
                     .addComponent(jbEnviar)
-                    .addComponent(jbVoltaTelaInicial))
+                    .addComponent(jbVoltaTelaInicial)
+                    .addComponent(jbAtualiza))
                 .addContainerGap())
         );
 
@@ -157,7 +157,7 @@ public class jfTalkChat extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jpTalkChat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 1, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,20 +175,6 @@ public class jfTalkChat extends javax.swing.JFrame {
 
     }
 
-    private void jbAtualizaListaDeUsuariosOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizaListaDeUsuariosOnActionPerformed
-
-        try {
-            arrayUsuariosOnline = this.servidor.atualizaListaUsuariosOnline();
-            for (String us : arrayUsuariosOnline) {
-                listaDeUsuariosOnline.addElement(us);
-            }
-        } catch (RemoteException ex) {
-            Logger.getLogger(jfTalkChat.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        this.jListaUsuariosOnline.setModel(listaDeUsuariosOnline);
-    }//GEN-LAST:event_jbAtualizaListaDeUsuariosOnActionPerformed
-
     private void jbVoltaTelaInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVoltaTelaInicialActionPerformed
         this.setVisible(false);
         jfTelaInicial jfTelaInicial = new jfTelaInicial();
@@ -196,11 +182,14 @@ public class jfTalkChat extends javax.swing.JFrame {
     }//GEN-LAST:event_jbVoltaTelaInicialActionPerformed
 
     private void jtCaixaDeTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCaixaDeTextoActionPerformed
-        
+
     }//GEN-LAST:event_jtCaixaDeTextoActionPerformed
 
     private void jbEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEnviarActionPerformed
         pegaValorDoList();
+        
+        System.out.println("Passei 3");
+        
         while (true) {
             try {
                 Mensagem mensagemInterface = new Mensagem();
@@ -214,6 +203,19 @@ public class jfTalkChat extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jbEnviarActionPerformed
+
+    private void jbAtualizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizaActionPerformed
+        listaDeUsuariosOnline.clear();
+        
+            arrayUsuariosOnline = usuario.getArrayUsuariosOnline();
+            System.out.println(arrayUsuariosOnline.toString());
+            for (String us : arrayUsuariosOnline) {
+                listaDeUsuariosOnline.addElement(us.toString());
+                System.out.println(us.toString());
+            }      
+
+        this.jListaUsuariosOnline.setModel(listaDeUsuariosOnline);
+    }//GEN-LAST:event_jbAtualizaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,7 +258,7 @@ public class jfTalkChat extends javax.swing.JFrame {
     private javax.swing.JList<String> jListaUsuariosOnline;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton jbAtualizaListaDeUsuariosOn;
+    private javax.swing.JButton jbAtualiza;
     private javax.swing.JButton jbEnviar;
     private javax.swing.JButton jbVoltaTelaInicial;
     private javax.swing.JLabel jlNomeDestinatario;
